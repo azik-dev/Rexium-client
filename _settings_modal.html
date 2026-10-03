@@ -1,0 +1,64 @@
+<!-- SETTINGS MODAL - barcha sahifalarda bir xil -->
+<div id="settingsModal" class="overlay" style="display:none">
+  <div class="modal glass anim-up stg-modal">
+    <button class="mclose" onclick="closeM('settingsModal')">&times;</button>
+    <h2>⚙️ Sozlamalar</h2>
+
+    <!-- Akkount info -->
+    <div class="stg-section">
+      <div class="stg-sec-title">👤 Akkount</div>
+      <div class="ilist" id="stgUserInfo">
+        <div class="irow"><span class="ilabel">Kirish talab etiladi</span></div>
+      </div>
+    </div>
+
+    <!-- Parol o'zgartirish -->
+    <div class="stg-section" id="stgPassSection" style="display:none">
+      <div class="stg-sec-title">🔐 Parolni O'zgartirish</div>
+      <form id="stgPassForm">
+        <div class="fg"><label>Eski Parol</label><input type="password" id="stgOldPass" placeholder="••••••••" required></div>
+        <div class="fg"><label>Yangi Parol</label><input type="password" id="stgNewPass" placeholder="••••••••" required></div>
+        <div class="fg"><label>Tasdiqlash</label><input type="password" id="stgNewPass2" placeholder="••••••••" required></div>
+        <button type="submit" class="btn-primary wf">💾 Saqlash</button>
+      </form>
+    </div>
+
+    <!-- Interfeys -->
+    <div class="stg-section">
+      <div class="stg-sec-title">🎨 Interfeys</div>
+      <div class="toggle-list">
+        <div class="toggle-item">
+          <div class="toggle-info">
+            <strong>Fon Animatsiyasi</strong>
+            <p>Kompyuter sekinlashsa o'chiring</p>
+          </div>
+          <label class="toggle-sw">
+            <input type="checkbox" id="stgAnim" checked>
+            <span class="sw-track"><span class="sw-thumb"></span></span>
+          </label>
+        </div>
+        <div class="toggle-item">
+          <div class="toggle-info">
+            <strong>Glass Effekt</strong>
+            <p>Shisha ko'rinish effekti</p>
+          </div>
+          <label class="toggle-sw">
+            <input type="checkbox" id="stgGlass" checked>
+            <span class="sw-track"><span class="sw-thumb"></span></span>
+          </label>
+        </div>
+        <div class="toggle-item">
+          <div class="toggle-info">
+            <strong>Silliq Animatsiyalar</strong>
+            <p>Hover va o'tish effektlari</p>
+          </div>
+          <label class="toggle-sw">
+            <input type="checkbox" id="stgTransitions" checked>
+            <span class="sw-track"><span class="sw-thumb"></span></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

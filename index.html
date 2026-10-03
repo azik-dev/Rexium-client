@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rexium Client</title>
+<link rel="stylesheet" href="style.css">
+<style>html{scroll-behavior:smooth}</style>
+</head>
+<body>
+<div class="bg-wrap" id="bgWrap">
+  <div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
+</div>
+
+<nav class="navbar glass">
+  <div class="cnt nav-row">
+    <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit">Rexium <span>Client</span></a></div>
+    <div class="nav-links">
+      <a href="#features">Imkoniyatlar</a>
+      <a href="#news">Yangiliklar</a>
+      <a href="#pricing">Narxlar</a>
+    </div>
+    <div class="nav-right">
+      <button id="settingsBtn" class="btn-ghost" title="Sozlamalar">⚙️</button>
+      <button id="mainBtn" class="btn-ghost">Ro'yxatdan o'tish</button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="cnt hero-inner">
+    <div class="hero-badge">✦ Minecraft 1.21.4 • Fabric</div>
+    <h1>Rexium<br><span class="grad">Client</span></h1>
+    <p class="hero-sub">O'zbek tilida eng kuchli Minecraft modifikatsiyasi</p>
+    <div class="hero-btns">
+      <button id="heroDlBtn" class="btn-primary">⬇ Yuklab olish</button>
+      <a href="#features" class="btn-ghost">Imkoniyatlar ↓</a>
+    </div>
+    <div class="chips">
+      <span class="chip">Fabric</span><span class="chip">O'zbek tili</span>
+      <span class="chip">Anti-cheat</span><span class="chip">20+ modul</span>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="sec">
+  <div class="cnt">
+    <h2 class="sec-title">Imkoniyatlar</h2>
+    <div class="grid3">
+      <div class="card glass"><div class="cicon">⚔️</div><h3>Jang Modullari</h3><p>Aura, TriggerBot, AutoArmor va 20+ modul</p></div>
+      <div class="card glass"><div class="cicon">🎨</div><h3>O'zbek Interfeysi</h3><p>To'liq uzbekcha, zamonaviy dizayn</p></div>
+      <div class="card glass"><div class="cicon">⚡</div><h3>Yuqori Tezlik</h3><p>Optimallashtirilgan, tez ishlaydi</p></div>
+      <div class="card glass"><div class="cicon">🛡️</div><h3>Xavfsizlik</h3><p>Anti-cheat tizimlaridan himoyalangan</p></div>
+      <div class="card glass"><div class="cicon">🌟</div><h3>Render Modullari</h3><p>ESP, Tracers, ChestESP va boshqalar</p></div>
+      <div class="card glass"><div class="cicon">🔧</div><h3>Moslashuvchan</h3><p>Har bir modulni alohida sozlash</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="news" class="sec sec-alt">
+  <div class="cnt">
+    <h2 class="sec-title">Yangiliklar</h2>
+    <div id="newsContainer" class="news-grid">
+      <div class="news-card glass">
+        <span class="ndate">01.10.2026</span>
+        <h3>Rexium Client chiqdi!</h3>
+        <p>To'liq uzbekcha interfeys bilan birinchi versiya!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="sec">
+  <div class="cnt">
+    <h2 class="sec-title">Narxlar</h2>
+    <div class="plans-grid">
+      <div class="plan-card glass">
+        <div class="plan-badge">30 kun</div>
+        <div class="plan-icon">⚡</div>
+        <h2 class="plan-name">Standart</h2>
+        <div class="plan-price">
+          <span class="plan-amount" id="idxPrice30">50,000</span>
+          <span class="plan-currency">UZS</span>
+        </div>
+        <div class="plan-period">30 kunlik obuna</div>
+        <ul class="plan-features">
+          <li>✅ Barcha modullar</li>
+          <li>✅ O'zbek interfeysi</li>
+          <li>✅ Yangilanishlar</li>
+          <li class="no">❌ VIP modullar</li>
+        </ul>
+        <a href="pricing.html" class="btn-primary wf" style="text-align:center;display:block">Sotib Olish</a>
+      </div>
+      <div class="plan-card glass plan-popular">
+        <div class="plan-popular-badge">🔥 Eng Ommabop</div>
+        <div class="plan-badge">90 kun</div>
+        <div class="plan-icon">🚀</div>
+        <h2 class="plan-name">Pro</h2>
+        <div class="plan-price">
+          <span class="plan-amount" id="idxPrice90">120,000</span>
+          <span class="plan-currency">UZS</span>
+        </div>
+        <div class="plan-period">90 kunlik obuna</div>
+        <ul class="plan-features">
+          <li>✅ Barcha modullar</li>
+          <li>✅ O'zbek interfeysi</li>
+          <li>✅ Yangilanishlar</li>
+          <li>✅ VIP modullar</li>
+        </ul>
+        <a href="pricing.html" class="btn-primary wf" style="text-align:center;display:block">Sotib Olish</a>
+      </div>
+      <div class="plan-card glass plan-vip">
+        <div class="plan-badge vip-badge">VIP ♾️</div>
+        <div class="plan-icon">👑</div>
+        <h2 class="plan-name">VIP</h2>
+        <div class="plan-price">
+          <span class="plan-amount" id="idxPriceVip">300,000</span>
+          <span class="plan-currency">UZS</span>
+        </div>
+        <div class="plan-period">Muddatsiz obuna</div>
+        <ul class="plan-features">
+          <li>✅ Barcha modullar</li>
+          <li>✅ VIP modullar</li>
+          <li>✅ Erta kirish</li>
+          <li>✅ Muddatsiz</li>
+        </ul>
+        <a href="pricing.html" class="btn-primary wf" style="text-align:center;display:block;background:linear-gradient(135deg,#f59e0b,#d97706)">Sotib Olish</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Login -->
+<div id="loginModal" class="overlay" style="display:none">
+  <div class="modal glass anim-up">
+    <button class="mclose" onclick="closeM('loginModal')">&times;</button>
+    <h2>Kirish</h2>
+    <form id="loginForm">
+      <div class="fg"><label>Email</label><input type="email" id="lEmail" placeholder="email@example.com" required></div>
+      <div class="fg"><label>Parol</label><input type="password" id="lPass" placeholder="••••••••" required></div>
+      <button type="submit" class="btn-primary wf">Kirish</button>
+    </form>
+    <p class="mswitch">Akkount yo'qmi? <a href="#" id="toReg">Ro'yxatdan o'tish</a></p>
+  </div>
+</div>
+
+<!-- Register -->
+<div id="regModal" class="overlay" style="display:none">
+  <div class="modal glass anim-up">
+    <button class="mclose" onclick="closeM('regModal')">&times;</button>
+    <h2>Ro'yxatdan o'tish</h2>
+    <form id="regForm">
+      <div class="fg"><label>Ism</label><input type="text" id="rName" placeholder="Ismingiz" required></div>
+      <div class="fg"><label>Email</label><input type="email" id="rEmail" placeholder="email@example.com" required></div>
+      <div class="fg"><label>Parol</label><input type="password" id="rPass" placeholder="••••••••" required></div>
+      <button type="submit" class="btn-primary wf">Ro'yxatdan o'tish</button>
+    </form>
+    <p class="mswitch">Akkount bormi? <a href="#" id="toLogin">Kirish</a></p>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+<footer class="footer glass"><div class="cnt"><p>© 2026 Rexium Client. Barcha huquqlar himoyalangan.</p></div></footer>
+
+<!-- SETTINGS MODAL -->
+<div id="settingsModal" class="overlay" style="display:none">
+  <div class="modal glass anim-up stg-modal">
+    <button class="mclose" onclick="closeM('settingsModal')">&times;</button>
+    <h2>⚙️ Sozlamalar</h2>
+    <div class="stg-section">
+      <div class="stg-sec-title">👤 Akkount</div>
+      <div class="ilist" id="stgUserInfo"><div class="irow"><span class="ilabel">Kirish talab etiladi</span></div></div>
+    </div>
+    <div class="stg-section" id="stgPassSection" style="display:none">
+      <div class="stg-sec-title">🔐 Parolni O'zgartirish</div>
+      <form id="stgPassForm">
+        <div class="fg"><label>Eski Parol</label><input type="password" id="stgOldPass" placeholder="••••••••" required></div>
+        <div class="fg"><label>Yangi Parol</label><input type="password" id="stgNewPass" placeholder="••••••••" required></div>
+        <div class="fg"><label>Tasdiqlash</label><input type="password" id="stgNewPass2" placeholder="••••••••" required></div>
+        <button type="submit" class="btn-primary wf">💾 Saqlash</button>
+      </form>
+    </div>
+    <div class="stg-section">
+      <div class="stg-sec-title">🎨 Interfeys</div>
+      <div class="toggle-list">
+        <div class="toggle-item">
+          <div class="toggle-info"><strong>Fon Animatsiyasi</strong><p>Kompyuter sekinlashsa o'chiring</p></div>
+          <label class="toggle-sw"><input type="checkbox" id="stgAnim" checked><span class="sw-track"><span class="sw-thumb"></span></span></label>
+        </div>
+        <div class="toggle-item">
+          <div class="toggle-info"><strong>Glass Effekt</strong><p>Shisha ko'rinish effekti</p></div>
+          <label class="toggle-sw"><input type="checkbox" id="stgGlass" checked><span class="sw-track"><span class="sw-thumb"></span></span></label>
+        </div>
+        <div class="toggle-item">
+          <div class="toggle-info"><strong>Silliq Animatsiyalar</strong><p>Hover va o'tish effektlari</p></div>
+          <label class="toggle-sw"><input type="checkbox" id="stgTransitions" checked><span class="sw-track"><span class="sw-thumb"></span></span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="auth.js"></script><script src="settings.js"></script><script src="app.js"></script>
+</body>
+</html>

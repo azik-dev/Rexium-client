@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - Rexium Client</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="bg-wrap" id="bgWrap"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
+
+<nav class="navbar glass">
+  <div class="cnt nav-row">
+    <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit">Rexium <span>Client</span></a></div>
+    <div class="nav-links">
+      <a href="index.html">Bosh sahifa</a>
+      <a href="pricing.html">💎 Narxlar</a>
+      <a href="dashboard.html" class="active">Dashboard</a>
+    </div>
+    <div class="nav-right">
+      <button id="settingsBtn" class="btn-ghost" title="Sozlamalar">⚙️</button>
+      <button id="logoutBtn" class="btn-ghost">Chiqish</button>
+    </div>
+  </div>
+</nav>
+
+<section class="page">
+  <div class="cnt">
+    <div class="page-head">
+      <h1>Dashboard</h1>
+      <p id="welcomeMsg">Xush kelibsiz!</p>
+    </div>
+    <div class="dgrid">
+      <!-- Akkount -->
+      <div class="dcard glass">
+        <div class="dcard-head"><span class="dcard-icon">👤</span><h3>Akkount</h3></div>
+        <div class="ilist">
+          <div class="irow"><span class="ilabel">Ism</span><span class="ival" id="uName">—</span></div>
+          <div class="irow"><span class="ilabel">Email</span><span class="ival" id="uEmail">—</span></div>
+          <div class="irow"><span class="ilabel">Status</span><span class="ival" id="uStatus">—</span></div>
+          <div class="irow"><span class="ilabel">Sana</span><span class="ival" id="uDate">—</span></div>
+        </div>
+      </div>
+      <!-- Download -->
+      <div class="dcard glass">
+        <div class="dcard-head"><span class="dcard-icon">💾</span><h3>Yuklab Olish</h3></div>
+        <div class="vbadges">
+          <div class="vbadge"><span>Versiya</span><strong id="dlVersion">3.0.14</strong></div>
+          <div class="vbadge"><span>Minecraft</span><strong id="dlMcVersion">1.21.4</strong></div>
+        </div>
+        <div id="dlSection"></div>
+      </div>
+
+      <!-- Bez Ban CFG -->
+      <div class="dcard glass" id="cfgCard" style="display:none">
+        <div class="dcard-head"><span class="dcard-icon">🛡️</span><h3>Bez Ban CFG</h3></div>
+        <div class="cfg-info">
+          <div class="cfg-badge">✨ Premium</div>
+          <p class="cfg-desc">Maxsus sozlamalar fayli — ban xavfini minimallashtiradi</p>
+        </div>
+        <div id="cfgSection"></div>
+      </div>
+      <!-- Sotib olish -->
+      <div class="dcard glass" id="purchaseCard" style="display:none;overflow:hidden">
+        <div class="dcard-head"><span class="dcard-icon">🎟</span><h3>Promo-Kod</h3></div>
+        <p class="price-desc" style="margin-bottom:16px">Promo-kod orqali modni faollashtiring yoki <a href="pricing.html" style="color:var(--p);text-decoration:none;font-weight:600">Narxlar</a> sahifasidan sotib oling</p>
+        <div id="pendingBox" class="pending-box" style="display:none">⏳ To'lovingiz tekshirilmoqda...</div>
+        <div class="promo-section">
+          <form id="promoForm">
+            <div class="promo-row">
+              <input type="text" id="promoInput" placeholder="PROMO-KOD" maxlength="20">
+              <button type="submit" class="btn-primary">Tasdiqlash</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- Funksiyalar -->
+      <div class="dcard glass">
+        <div class="dcard-head"><span class="dcard-icon">⚡</span><h3>Funksiyalar</h3></div>
+        <ul class="feat-ul">
+          <li>✅ To'liq uzbekcha interfeys</li>
+          <li>✅ 20+ jang modullari</li>
+          <li>✅ Harakat modullari</li>
+          <li>✅ Render modullari</li>
+          <li>✅ Zamonaviy GUI</li>
+          <li>✅ Anti-cheat himoya</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOUT CONFIRM -->
+<div id="logoutModal" class="overlay" style="display:none">
+  <div class="modal glass confirm-modal anim-up">
+    <h2>Chiqish</h2>
+    <p>Siz tizimdan chiqishingizni tasdiqlamoqchimisiz?</p>
+    <div class="confirm-btns">
+      <button id="confirmYes" class="btn-err">Ha, chiqish</button>
+      <button id="confirmNo" class="btn-ghost">Yo'q</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAY MODAL -->
+<div id="payModal" class="overlay" style="display:none">
+  <div class="modal glass pay-modal anim-up">
+    <button class="mclose" onclick="closeM('payModal')">&times;</button>
+    <div class="pay-head"><h2>💳 To'lov</h2><p>Quyidagi karta raqamiga pul o'tkazing</p></div>
+    <div class="card-vis">
+      <div class="cnum" id="adminCardNum">8600 0000 0000 0000</div>
+      <div class="cown" id="adminCardName">REXIUM CLIENT</div>
+      <div class="cbank">UzCard / Humo</div>
+    </div>
+    <div class="pay-sum">To'lov summasi: <span id="payAmountShow">120,000 UZS</span></div>
+    <form id="payForm">
+      <div class="fg"><label>Sizning Ism Familyangiz</label><input type="text" id="payerName" placeholder="AZIZ KARIMOV" required></div>
+      <div class="fg">
+        <label>Check rasmi</label>
+        <div class="upload-area"><input type="file" id="checkImg" accept="image/*" required>
+          <label for="checkImg"><span class="uico">📸</span><span>Rasmni tanlang</span></label>
+        </div>
+        <div id="imgPreview" class="img-prev" style="display:none"><img id="previewSrc" src="" alt="check"></div>
+      </div>
+      <button type="submit" class="btn-primary wf">✓ Yuborish</button>
+      <p class="pay-note">Admin tekshirib tasdiqlaydi, keyin yuklab olish ochiladi</p>
+    </form>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+<footer class="footer glass"><div class="cnt"><p>© 2026 Rexium Client</p></div></footer>
+
+<!-- SETTINGS MODAL -->
+<div id="settingsModal" class="overlay" style="display:none">
+  <div class="modal glass anim-up stg-modal">
+    <button class="mclose" onclick="closeM('settingsModal')">&times;</button>
+    <h2>⚙️ Sozlamalar</h2>
+    <div class="stg-section">
+      <div class="stg-sec-title">👤 Akkount</div>
+      <div class="ilist" id="stgUserInfo"></div>
+    </div>
+    <div class="stg-section" id="stgPassSection" style="display:none">
+      <div class="stg-sec-title">🔐 Parolni O'zgartirish</div>
+      <form id="stgPassForm">
+        <div class="fg"><label>Eski Parol</label><input type="password" id="stgOldPass" placeholder="••••••••" required></div>
+        <div class="fg"><label>Yangi Parol</label><input type="password" id="stgNewPass" placeholder="••••••••" required></div>
+        <div class="fg"><label>Tasdiqlash</label><input type="password" id="stgNewPass2" placeholder="••••••••" required></div>
+        <button type="submit" class="btn-primary wf">💾 Saqlash</button>
+      </form>
+    </div>
+    <div class="stg-section">
+      <div class="stg-sec-title">🎨 Interfeys</div>
+      <div class="toggle-list">
+        <div class="toggle-item">
+          <div class="toggle-info"><strong>Fon Animatsiyasi</strong><p>Kompyuter sekinlashsa o'chiring</p></div>
+          <label class="toggle-sw"><input type="checkbox" id="stgAnim" checked><span class="sw-track"><span class="sw-thumb"></span></span></label>
+        </div>
+        <div class="toggle-item">
+          <div class="toggle-info"><strong>Glass Effekt</strong><p>Shisha ko'rinish effekti</p></div>
+          <label class="toggle-sw"><input type="checkbox" id="stgGlass" checked><span class="sw-track"><span class="sw-thumb"></span></span></label>
+        </div>
+        <div class="toggle-item">
+          <div class="toggle-info"><strong>Silliq Animatsiyalar</strong><p>Hover va o'tish effektlari</p></div>
+          <label class="toggle-sw"><input type="checkbox" id="stgTransitions" checked><span class="sw-track"><span class="sw-thumb"></span></span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="auth.js"></script><script src="settings.js"></script><script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - Rexium Client</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="bg-wrap" id="bgWrap"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
+
+<nav class="navbar glass">
+  <div class="cnt nav-row">
+    <div class="logo"><a href="index.html" style="text-decoration:none;color:inherit">Rexium <span>Admin</span></a></div>
+    <div class="nav-links">
+      <a href="index.html">Sayt</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="admin.html" class="active">Admin Panel</a>
+    </div>
+    <div class="nav-right">
+      <button id="settingsBtn" class="btn-ghost" title="Sozlamalar">⚙️</button>
+      <button id="logoutBtn" class="btn-ghost">Chiqish</button>
+    </div>
+  </div>
+</nav>
+
+<section class="page">
+  <div class="cnt">
+    <div class="page-head"><h1>🔧 Admin Panel</h1></div>
+
+    <div class="atabs glass">
+      <button class="atab active" data-tab="payments">💰 To'lovlar <span id="pendingCount" class="bpill">0</span></button>
+      <button class="atab" data-tab="news">📰 Yangiliklar</button>
+      <button class="atab" data-tab="users">👥 Foydalanuvchilar</button>
+      <button class="atab" data-tab="promos">🎟 Promo-kodlar</button>
+      <button class="atab" data-tab="settings">⚙️ Sozlamalar</button>
+    </div>
+
+    <!-- PAYMENTS -->
+    <div class="tpane active" id="tab-payments">
+      <div class="acard glass"><h3>Kutilayotgan To'lovlar</h3><div id="pendingPaysList"></div></div>
+      <div class="acard glass"><h3>To'lovlar Tarixi</h3><div id="historyPaysList"></div></div>
+    </div>
+
+    <!-- NEWS -->
+    <div class="tpane" id="tab-news">
+      <div class="acard glass">
+        <h3>Yangilik Qo'shish</h3>
+        <form id="newsForm">
+          <div class="fg"><label>Sarlavha</label><input type="text" id="newsTitle" placeholder="Yangilik sarlavhasi" required></div>
+          <div class="fg"><label>Matn</label><textarea id="newsText" rows="4" placeholder="Yangilik matni..." required></textarea></div>
+          <button type="submit" class="btn-primary">➕ Qo'shish</button>
+        </form>
+      </div>
+      <div class="acard glass"><h3>Barcha Yangiliklar</h3><div id="newsList"></div></div>
+    </div>
+
+    <!-- USERS -->
+    <div class="tpane" id="tab-users">
+      <div class="acard glass">
+        <div class="acard-head">
+          <h3>Foydalanuvchilar</h3>
+          <div class="stats-row">
+            <span class="stt glass">Jami: <strong id="statTotal">0</strong></span>
+            <span class="stt glass">Sotib olgan: <strong id="statBought">0</strong></span>
+          </div>
+        </div>
+        <div id="usersList" class="ulist"></div>
+      </div>
+    </div>
+
+    <!-- PROMOS -->
+    <div class="tpane" id="tab-promos">
+      <div class="acard glass">
+        <h3>Promo-kod Yaratish</h3>
+        <form id="promoCreateForm">
+          <div class="fg"><label>Promo-kod</label><input type="text" id="promoCode" placeholder="REXIUM2026" maxlength="20" required></div>
+          <div class="fg"><label>Necha kishi ishlata oladi</label><input type="number" id="promoMax" min="1" placeholder="1" required></div>
+          <button type="submit" class="btn-primary">➕ Yaratish</button>
+        </form>
+      </div>
+      <div class="acard glass"><h3>Barcha Promo-kodlar</h3><div id="promosList"></div></div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="tpane" id="tab-settings">
+      <div class="acard glass">
+        <h3>Mod Sozlamalari</h3>
+        <form id="settingsForm">
+          <div class="fg"><label>Narx (UZS)</label><input type="number" id="cfgPrice" placeholder="120000" required></div>
+          <div class="fg"><label>30 kunlik narx (UZS)</label><input type="number" id="cfgP30" placeholder="50000"></div>
+          <div class="fg"><label>90 kunlik narx (UZS)</label><input type="number" id="cfgP90" placeholder="120000"></div>
+          <div class="fg"><label>VIP narx (UZS)</label><input type="number" id="cfgPVip" placeholder="300000"></div>
+          <div class="fg"><label>Mod Versiyasi</label><input type="text" id="cfgVersion" required></div>
+          <div class="fg"><label>Minecraft Versiyasi</label><input type="text" id="cfgMcVer" required></div>
+          <div class="fg"><label>To'lov Karta Raqami</label><input type="text" id="cfgCardNum"></div>
+          <div class="fg"><label>Karta Egasi</label><input type="text" id="cfgCardName"></div>
+          <button type="submit" class="btn-primary">💾 Saqlash</button>
+        </form>
+      </div>
+
+      <!-- MOD FAYLI -->
+      <div class="acard glass">
+        <h3>💾 Mod Fayli (Rexium Client .jar)</h3>
+        <p style="color:var(--sub);font-size:14px;margin-bottom:24px">Sotib olgan foydalanuvchilarga beriladigan mod fayli. Fayl yoki URL orqali o'rnating.</p>
+
+        <form id="modUrlForm">
+          <div class="cfg-method-title">🔗 URL orqali</div>
+          <div class="fg">
+            <label>Mod Fayl URL manzili (.jar)</label>
+            <input type="url" id="modUrlInput" placeholder="https://example.com/rexium-client.jar">
+          </div>
+          <div class="cfg-status" id="modUrlStatus"></div>
+          <button type="submit" class="btn-primary">💾 URL Saqlash</button>
+        </form>
+
+        <div class="cfg-divider">yoki</div>
+
+        <form id="modFileForm">
+          <div class="cfg-method-title">📁 Fayl yuklash</div>
+          <div class="fg">
+            <label>Mod faylni tanlang (.jar)</label>
+            <div class="upload-area">
+              <input type="file" id="modFileInput" accept=".jar,.zip">
+              <label for="modFileInput">
+                <span class="uico">☕</span>
+                <span id="modFileLabel">Faylni tanlang (.jar, .zip)</span>
+              </label>
+            </div>
+          </div>
+          <div class="cfg-status" id="modFileStatus"></div>
+          <button type="submit" class="btn-primary">📤 Fayl Yuklash</button>
+        </form>
+
+        <div class="cfg-current glass" id="modCurrentBox" style="display:none">
+          <div class="cfg-current-title">✅ Joriy Mod Fayli</div>
+          <div id="modCurrentInfo"></div>
+          <button onclick="clearMod()" class="btn-err btn-sm" style="margin-top:12px">🗑 Mod faylini o'chirish</button>
+        </div>
+      </div>
+
+      <div class="acard glass">
+        <h3>🛡️ Bez Ban CFG</h3>
+        <p style="color:var(--sub);font-size:14px;margin-bottom:24px">
+          Sotib olgan foydalanuvchilarga beriladigan maxsus CFG fayli. Fayl yoki URL orqali o'rnating.
+        </p>
+
+        <!-- CFG URL -->
+        <form id="cfgUrlForm">
+          <div class="cfg-method-title">🔗 URL orqali</div>
+          <div class="fg">
+            <label>CFG Fayl URL manzili</label>
+            <input type="url" id="cfgUrlInput" placeholder="https://example.com/bezban.cfg">
+          </div>
+          <div class="cfg-status" id="cfgUrlStatus"></div>
+          <button type="submit" class="btn-primary">💾 URL Saqlash</button>
+        </form>
+
+        <div class="cfg-divider">yoki</div>
+
+        <!-- CFG Fayl yuklash -->
+        <form id="cfgFileForm">
+          <div class="cfg-method-title">📁 Fayl yuklash</div>
+          <div class="fg">
+            <label>CFG Faylni tanlang</label>
+            <div class="upload-area">
+              <input type="file" id="cfgFileInput" accept=".cfg,.json,.txt">
+              <label for="cfgFileInput">
+                <span class="uico">📁</span>
+                <span id="cfgFileLabel">Faylni tanlang (.cfg, .json, .txt)</span>
+              </label>
+            </div>
+          </div>
+          <div class="cfg-status" id="cfgFileStatus"></div>
+          <button type="submit" class="btn-primary">📤 Fayl Yuklash</button>
+        </form>
+
+        <div class="cfg-current glass" id="cfgCurrentBox" style="display:none">
+          <div class="cfg-current-title">✅ Joriy CFG</div>
+          <div id="cfgCurrentInfo"></div>
+          <button onclick="clearCfg()" class="btn-err btn-sm" style="margin-top:12px">🗑 CFG ni o'chirish</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOUT CONFIRM -->
+<div id="logoutModal" class="overlay" style="display:none">
+  <div class="modal glass confirm-modal anim-up">
+    <h2>Chiqish</h2>
+    <p>Siz tizimdan chiqishingizni tasdiqlamoqchimisiz?</p>
+    <div class="confirm-btns">
+      <button id="confirmYes" class="btn-err">Ha, chiqish</button>
+      <button id="confirmNo" class="btn-ghost">Yo'q</button>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT USER -->
+<div id="editUserModal" class="overlay" style="display:none">
+  <div class="modal glass anim-up">
+    <button class="mclose" onclick="closeM('editUserModal')">&times;</button>
+    <h2>✏️ Foydalanuvchini Tahrirlash</h2>
+    <input type="hidden" id="editUId">
+    <div class="fg"><label>Ism</label><input type="text" id="editUName" required></div>
+    <div class="fg"><label>Email</label><input type="email" id="editUEmail" required></div>
+    <div class="fg"><label>Status</label>
+      <select id="editUStatus">
+        <option value="0">Sotib olmagan</option>
+        <option value="1">Sotib olgan (ruxsat berilgan)</option>
+      </select>
+    </div>
+    <button id="saveEditUser" class="btn-primary wf mt12">Saqlash</button>
+  </div>
+</div>
+
+<!-- DELETE USER CONFIRM -->
+<div id="delUserModal" class="overlay" style="display:none">
+  <div class="modal glass confirm-modal anim-up">
+    <h2>Foydalanuvchini o'chirish</h2>
+    <p>Bu foydalanuvchini o'chirishni tasdiqlaysizmi? Bu amalni qaytarib bo'lmaydi.</p>
+    <div class="confirm-btns">
+      <button id="delUserYes" class="btn-err">Ha, o'chirish</button>
+      <button id="delUserNo" class="btn-ghost">Bekor qilish</button>
+    </div>
+  </div>
+</div>
+
+<!-- IMAGE VIEWER -->
+<div id="imgViewer" class="overlay" style="display:none">
+  <div class="imgview-inner">
+    <button class="mclose" onclick="closeM('imgViewer')" style="top:-40px;right:0;color:#fff;font-size:36px">&times;</button>
+    <img id="viewerImg" src="" alt="check">
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+<footer class="footer glass"><div class="cnt"><p>© 2026 Rexium Client Admin Panel</p></div></footer>
+
+<!-- SETTINGS MODAL -->
+<div id="settingsModal" class="overlay" style="display:none">
+  <div class="modal glass anim-up stg-modal">
+    <button class="mclose" onclick="closeM('settingsModal')">&times;</button>
+    <h2>⚙️ Sozlamalar</h2>
+    <div class="stg-section">
+      <div class="stg-sec-title">👤 Akkount</div>
+      <div class="ilist" id="stgUserInfo"></div>
+    </div>
+    <div class="stg-section" id="stgPassSection" style="display:none">
+      <div class="stg-sec-title">🔐 Parolni O'zgartirish</div>
+      <form id="stgPassForm">
+        <div class="fg"><label>Eski Parol</label><input type="password" id="stgOldPass" placeholder="••••••••" required></div>
+        <div class="fg"><label>Yangi Parol</label><input type="password" id="stgNewPass" placeholder="••••••••" required></div>
+        <div class="fg"><label>Tasdiqlash</label><input type="password" id="stgNewPass2" placeholder="••••••••" required></div>
+        <button type="submit" class="btn-primary wf">💾 Saqlash</button>
+      </form>
+    </div>
+    <div class="stg-section">
+      <div class="stg-sec-title">🎨 Interfeys</div>
+      <div class="toggle-list">
+        <div class="toggle-item">
+          <div class="toggle-info"><strong>Fon Animatsiyasi</strong><p>Kompyuter sekinlashsa o'chiring</p></div>
+          <label class="toggle-sw"><input type="checkbox" id="stgAnim" checked><span class="sw-track"><span class="sw-thumb"></span></span></label>
+        </div>
+        <div class="toggle-item">
+          <div class="toggle-info"><strong>Glass Effekt</strong><p>Shisha ko'rinish effekti</p></div>
+          <label class="toggle-sw"><input type="checkbox" id="stgGlass" checked><span class="sw-track"><span class="sw-thumb"></span></span></label>
+        </div>
+        <div class="toggle-item">
+          <div class="toggle-info"><strong>Silliq Animatsiyalar</strong><p>Hover va o'tish effektlari</p></div>
+          <label class="toggle-sw"><input type="checkbox" id="stgTransitions" checked><span class="sw-track"><span class="sw-thumb"></span></span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="auth.js"></script><script src="settings.js"></script><script src="admin.js"></script>
+</body>
+</html>
